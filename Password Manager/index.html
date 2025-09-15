@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PassGuard Pro - Advanced Password Manager</title>
+
+    <!-- SEO Meta -->
+    <meta
+      name="description"
+      content="PassGuard Pro - Secure & modern password manager with dark mode, password generator, password strength indicator, and search."
+    />
+    <link rel="icon" href="favicon.ico" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Main Container -->
+    <div class="container my-5">
+      <header class="text-center mb-5">
+        <h1 class="display-4 fw-bold main-title">
+          PassGuard Pro <i class="bi bi-shield-check"></i>
+        </h1>
+        <p class="lead text-muted">Your Modern & Secure Password Vault</p>
+      </header>
+
+      <main class="row g-5">
+        <!-- Add Credential Section -->
+        <section class="col-xl-5 col-lg-12">
+          <div class="card p-4 shadow-sm form-card">
+            <h2 class="h4 mb-4 fw-light">Add New Credential</h2>
+            <form id="password-form" novalidate>
+              <!-- Website -->
+              <div class="input-group mb-3">
+                <span class="input-group-text"
+                  ><i class="bi bi-globe2"></i
+                ></span>
+                <label for="website" class="visually-hidden">Website</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="website"
+                  placeholder="e.g., Google"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please enter a website or app name.
+                </div>
+              </div>
+
+              <!-- Username -->
+              <div class="input-group mb-3">
+                <span class="input-group-text"
+                  ><i class="bi bi-person"></i
+                ></span>
+                <label for="username" class="visually-hidden"
+                  >Username or Email</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="username"
+                  placeholder="e.g., user@example.com"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email or username.
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div class="mb-4">
+                <label for="password" class="form-label visually-hidden"
+                  >Password</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text"
+                    ><i class="bi bi-key"></i
+                  ></span>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Enter a strong password"
+                    required
+                    minlength="8"
+                  />
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id="toggle-password"
+                    title="Show/Hide Password"
+                    aria-label="Show or Hide Password"
+                  >
+                    <i class="bi bi-eye-slash"></i>
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    id="generate-password"
+                    title="Generate Password"
+                    aria-label="Generate a Strong Password"
+                  >
+                    <i class="bi bi-magic"></i>
+                  </button>
+                </div>
+                <div id="password-feedback" class="invalid-feedback mt-2">
+                  Password must be at least 8 characters long and contain
+                  uppercase, lowercase, a number, and a special character.
+                </div>
+
+                <!-- ✅ Password Strength Indicator -->
+                <small
+                  id="password-strength"
+                  class="form-text mt-2 fw-semibold"
+                ></small>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="bi bi-plus-circle-fill me-2"></i>Add Credential
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Saved Credentials Section -->
+        <section class="col-xl-7 col-lg-12">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="h4 fw-light mb-0">Saved Credentials</h2>
+            <div class="w-50">
+              <label for="search-bar" class="visually-hidden"
+                >Search Credentials</label
+              >
+              <input
+                type="search"
+                id="search-bar"
+                class="form-control"
+                placeholder="Search..."
+                aria-label="Search Saved Credentials"
+              />
+            </div>
+          </div>
+
+          <div id="passwords-list" class="vstack gap-3">
+            <!-- Empty State -->
+            <div id="no-passwords-message" class="text-center p-5 card">
+              <h5 class="text-muted">No credentials found.</h5>
+              <p class="text-muted mb-0">Add one using the form on the left.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div id="toast-body" class="toast-body">Message goes here.</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

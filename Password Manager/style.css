@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ===== Light & Dark Mode Variables ===== */
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --bg-color: #f0f2f5;
+    --card-bg-color: rgba(255, 255, 255, 0.75);
+    --text-color: #212529;
+    --muted-text-color: #6c757d;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --input-bg: #fff;
+    --gradient-start: #e0c3fc;
+    --gradient-end: #8ec5fc;
+}
+
+/* ===== Fade-in Animations ===== */
+@keyframes fadeInPage {
+    0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+    60% { opacity: 0.6; transform: translateY(8px) scale(1.02); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes slideInToast {
+    0% { transform: translateY(40px) scale(0.95); opacity: 0; }
+    60% { transform: translateY(-4px) scale(1.05); opacity: 0.8; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ===== General Body & Typography ===== */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    animation: fadeInPage 0.8s ease-in-out;
+    transition: background 0.5s ease, color 0.4s ease;
+}
+
+/* ===== Cards (Glassmorphism) ===== */
+.card {
+    background: var(--card-bg-color);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    transition: all 0.4s ease;
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px var(--shadow-color);
+}
+
+/* ===== Flex Utilities ===== */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== Form & Inputs ===== */
+.form-control, .input-group-text {
+    background-color: var(--input-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+.input-group-text { border-right: none !important; }
+.form-control { border-left: none !important; }
+.form-control:focus {
+    box-shadow: 0 0 0 0.3rem rgba(106, 17, 203, 0.35);
+    transform: scale(1.02);
+}
+
+/* ===== Toast Notifications ===== */
+#liveToast {
+    background-color: #333;
+    color: white;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    animation: slideInToast 0.5s ease forwards;
+    transition: all 0.3s ease;
+}
+#liveToast.bg-success { background-color: #198754 !important; }
+#liveToast.bg-danger { background-color: #dc3545 !important; }
+
+/* ===== Credential Card Styling ===== */
+.password-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+}
+.password-card .website-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 6px;
+    object-fit: contain;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.password-card .action-btn {
+    background: none;
+    border: none;
+    color: var(--muted-text-color);
+    font-size: 1.3rem;
+    transition: all 0.25s ease;
+    padding: 0.6rem;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.password-card .action-btn:hover {
+    color: var(--primary-color);
+    background-color: rgba(106, 17, 203, 0.12);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(106, 17, 203, 0.3);
+}
+.password-card .action-btn.delete:hover {
+    color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.12);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+}
+#password-strength {
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
